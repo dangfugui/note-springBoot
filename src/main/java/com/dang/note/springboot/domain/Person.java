@@ -1,11 +1,14 @@
 package com.dang.note.springboot.domain;
 
+import org.springframework.data.annotation.Id;
+
 import java.io.Serializable;
 
 public class Person implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    //id属性是给mongodb用的，用@Id注解修饰
+    @Id
     private String id;
     private String name;
     private Integer age;

@@ -1,4 +1,4 @@
-package com.dang.note.springboot.redis;
+package com.dang.note.springboot.resource.redis;
 
 import javax.annotation.Resource;
 

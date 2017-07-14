@@ -1,7 +1,7 @@
 package com.dang.note.springboot.controller;
 
 import com.dang.note.springboot.domain.Person;
-import com.dang.note.springboot.redis.ObjectDao;
+import com.dang.note.springboot.resource.redis.ObjectDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

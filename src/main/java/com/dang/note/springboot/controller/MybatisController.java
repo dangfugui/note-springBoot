@@ -1,7 +1,7 @@
 package com.dang.note.springboot.controller;
 
 import com.dang.note.springboot.domain.Person;
-import com.dang.note.springboot.mapper.PersonMapper;
+import com.dang.note.springboot.resource.mysql.PersonMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;

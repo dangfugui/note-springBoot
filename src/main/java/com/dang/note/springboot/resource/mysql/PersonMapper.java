@@ -1,4 +1,4 @@
-package com.dang.note.springboot.mapper;
+package com.dang.note.springboot.resource.mysql;
 
 import com.dang.note.springboot.domain.Person;
 

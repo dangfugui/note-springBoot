@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace必须指向Dao接口 -->
-<mapper namespace="com.dang.note.springboot.mapper.PersonMapper">
+<mapper namespace="com.dang.note.springboot.resource.mysql.PersonMapper">
     <resultMap id="Person" type="com.dang.note.springboot.domain.Person" >
         <id column="id" property="id" />
         <result column="name" property="name" />
