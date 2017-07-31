@@ -22,7 +22,8 @@ public class HelloControllerTests {
     public void testHelloworld(){
         String expectedResult="Hello world!";
         String result=helloController.helloworld();
-        Assert.assertTrue("数据一致", expectedResult.equals(result));
-        Assert.assertFalse("数据不一致", !expectedResult.equals(result));
+        //Assert.assertTrue("数据一致", expectedResult.equals(result));
+        Assert.assertEquals(expectedResult,result);
+        //Assert.assertFalse("数据不一致", !expectedResult.equals(result));
     }
 }

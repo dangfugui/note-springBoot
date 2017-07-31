@@ -1,4 +1,4 @@
-package com.dang.note.springboot;
+package com.dang.note;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.tomcat.jdbc.pool.DataSource;
@@ -15,7 +15,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @SpringBootApplication
-@MapperScan("com.dang.note.springboot")
+@MapperScan("com.dang.note")
 public class Application {
 	protected static Logger logger=LoggerFactory.getLogger(Application.class);
 
@@ -27,15 +27,14 @@ public class Application {
 	@Bean
 	@ConfigurationProperties(prefix="spring.datasource")
 	public DataSource dataSource() {
-		return new org.apache.tomcat.jdbc.pool.DataSource();
+		return new DataSource();
 	}
 	@Bean
 	public SqlSessionFactory sqlSessionFactoryBean() throws Exception {
 		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
 		sqlSessionFactoryBean.setDataSource(dataSource());
 		PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-		sqlSessionFactoryBean.setMapperLocations(resolver.getResources
-				("classpath:static/mybatis/*Mapper.xml"));
+		sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath:*/mapper/*Mapper.xml"));
 		return sqlSessionFactoryBean.getObject();
 	}
 	@Bean

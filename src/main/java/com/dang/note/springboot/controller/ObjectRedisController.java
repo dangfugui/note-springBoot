@@ -17,7 +17,7 @@ public class ObjectRedisController {
     public String set(String id,String name,Integer age){
         logger.debug("访问setPerson:id={},name={},age={}",id,name,age);
         Person person = new Person(id,name,age);
-        objectDao.save(person.getId(),person);
+        objectDao.save(person.getId(),person);//redis 存储
         return "save:"+person.toString();
     }
 

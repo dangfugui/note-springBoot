@@ -9,7 +9,7 @@
     </resultMap>
 
     <!-- 根据ID查询数据 -->
-    <select id="list" parameterType="String" resultMap="Person">
+    <select id="list"  resultMap="Person">
         select * from person;
     </select>
 </mapper>

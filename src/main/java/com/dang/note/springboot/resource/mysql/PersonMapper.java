@@ -8,5 +8,5 @@ import java.util.List;
  * Created by dangqihe on 2017/7/14.
  */
 public interface PersonMapper {
-    public List<Person> list();
+    List<Person> list();
 }

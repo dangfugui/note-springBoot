@@ -21,12 +21,15 @@ public class HelloController {
     public String helloworld(){
         logger.debug("访问hello");
         return "Hello world!";
+//        ModelAndView mv = new ModelAndView("/html/hi");
+//        return mv;
     }
 
     @RequestMapping("/{name}")
     public String hellName(@PathVariable String name){
         logger.debug("访问helloName,Name={}",name);
-        return "Hello "+name;
+        ModelAndView mv = new ModelAndView(name);
+        return name;
     }
     @RequestMapping("/index")
     public ModelAndView index(Map<String, Object> model){
