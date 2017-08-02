@@ -5,17 +5,19 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class User implements Serializable {
-    private int uid;
+    private long id;
     private String username;
     private String password;
+    private String salt;
+    private int locked;
     private Set<Role> roles = new HashSet<>();
 
-    public int getUid() {
-        return uid;
+    public long getId() {
+        return id;
     }
 
-    public void setUid(int uid) {
-        this.uid = uid;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -32,6 +34,22 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public int getLocked() {
+        return locked;
+    }
+
+    public void setLocked(int locked) {
+        this.locked = locked;
     }
 
     public Set<Role> getRoles() {

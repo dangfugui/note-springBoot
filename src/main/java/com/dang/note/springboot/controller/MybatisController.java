@@ -20,7 +20,7 @@ public class MybatisController {
     @Resource
     PersonMapper personMapper;
     @RequestMapping("/list")
-    public List<Person> 李斯特(){
+    public List<Person> list(){
         logger.info("list");
         return personMapper.list();
     }

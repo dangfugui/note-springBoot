@@ -4,25 +4,35 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Role {
-    private int rid;
-    private String rname;
+    private int id;
+    private String role;
+    private String description;
+    private int available;
     private Set<User> users = new HashSet<>();
-    private Set<Module> modules = new HashSet<>();
+    private Set<Permission> permissions = new HashSet<>();
 
-    public int getRid() {
-        return rid;
+    public int getId() {
+        return id;
     }
 
-    public void setRid(int rid) {
-        this.rid = rid;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getRname() {
-        return rname;
+    public String getRole() {
+        return role;
     }
 
-    public void setRname(String rname) {
-        this.rname = rname;
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public int getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(int available) {
+        this.available = available;
     }
 
     public Set<User> getUsers() {
@@ -33,11 +43,11 @@ public class Role {
         this.users = users;
     }
 
-    public Set<Module> getModules() {
-        return modules;
+    public Set<Permission> getPermissions() {
+        return permissions;
     }
 
-    public void setModules(Set<Module> modules) {
-        this.modules = modules;
+    public void setPermissions(Set<Permission> permissions) {
+        this.permissions = permissions;
     }
 }

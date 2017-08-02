@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dang.note.shiro.resource.mysql.UserMapper">
+    <resultMap type="com.dang.note.shiro.domain.User" id="userMap">
+        <id property="id" column="uid"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="salt" column="salt"/>
+        <result property="locked" column="locked"/>
+        <collection property="roles" ofType="com.dang.note.shiro.domain.Role">
+            <id property="id" column="rid"/>
+            <result property="role" column="role"/>
+            <result property="description" column="role_description"/>
+            <result property="available" column="available"/>
+            <collection property="permissions" ofType="com.dang.note.shiro.domain.Permission">
+                <id property="id" column="pid"/>
+                <result property="permission" column="permission"/>
+                <result property="description" column="permission_description"/>
+                <result property="available" column="available"/>
+            </collection>
+        </collection>
+    </resultMap>
+
+
+
+    <insert id="createUser"  parameterType="com.dang.note.shiro.domain.User" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_users(username, password, salt, locked) values(#{username},#{password},#{salt},
+        #{locked});
+    </insert>
+    <update id="updateUser"  parameterType="com.dang.note.shiro.domain.User">
+        UPDATE sys_users SET
+        <if test="username!=null">username = #{username},</if>
+        <if test="password!=null">password = #{password},</if>
+        <if test="salt!=null">salt = #{salt},</if>
+        <if test="locked!=null">locked = #{locked},</if>
+        uid = #{id}
+        WHERE uid = #{id}
+    </update>
+    <delete id="deleteUser" parameterType="Long">
+        DELETE FROM sys_users WHERE id = #{userId};
+    </delete>
+    <select id="findOne"  parameterType="Long" resultMap="userMap">
+        SELECT u.*,r.*,p.* ,r.description as role_description ,p.description as permission_description FROM sys_users u
+        inner join sys_users_roles ur on ur.user_id=u.uid
+        inner join sys_roles r on r.rid=ur.role_id
+        inner join sys_roles_permissions mr on mr.role_id=r.rid
+        inner join sys_permissions p on mr.permission_id=p.pid
+        WHERE u.uid = #{userId};
+    </select>
+    <select id="findByUserName" parameterType="String" resultMap="userMap">
+        SELECT u.*,r.*,p.* ,r.description as role_description ,p.description as permission_description FROM sys_users u
+        inner join sys_users_roles ur on ur.user_id=u.uid
+        inner join sys_roles r on r.rid=ur.role_id
+        inner join sys_roles_permissions mr on mr.role_id=r.rid
+        inner join sys_permissions p on mr.permission_id=p.pid
+        WHERE u.username = #{username};
+    </select>
+</mapper>

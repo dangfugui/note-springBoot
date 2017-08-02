@@ -15,7 +15,7 @@ import java.util.List;
  * Created by dangqihe on 2017/7/14.
  */
 @RestController
-@RequestMapping("mongo")
+@RequestMapping("/mongo")
 public class MongoController {
     Logger logger = LoggerFactory.getLogger(MongoController.class);
     @Autowired
