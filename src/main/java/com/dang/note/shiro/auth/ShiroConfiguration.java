@@ -1,5 +1,6 @@
 package com.dang.note.shiro.auth;
 
+import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -18,7 +19,7 @@ import java.util.LinkedHashMap;
 public class ShiroConfiguration {
     @Bean(name="shiroFilter")
     public ShiroFilterFactoryBean shiroFilter(@Qualifier("securityManager")org.apache.shiro.mgt.SecurityManager manager) {
-        ShiroFilterFactoryBean bean=new ShiroFilterFactoryBean();
+        ShiroFilterFactoryBean bean=new MShiroFilterFactoryBean();//ShiroFilterFactoryBean();
         bean.setSecurityManager( manager);
         //配置登录的url和登录成功的url
         bean.setLoginUrl("/shiro/login.html");
@@ -44,6 +45,8 @@ public class ShiroConfiguration {
         System.err.println("--------------shiro已经加载----------------");
         DefaultWebSecurityManager manager=new DefaultWebSecurityManager();
         manager.setRealm(authRealm);
+          // 用户授权/认证信息Cache, 采用EhCache 缓存
+        manager.setCacheManager(getEhCacheManager());
         return manager;
     }
     //配置自定义的权限登录器
@@ -73,5 +76,11 @@ public class ShiroConfiguration {
         AuthorizationAttributeSourceAdvisor advisor=new AuthorizationAttributeSourceAdvisor();
         advisor.setSecurityManager(manager);
         return advisor;
+    }
+    @Bean
+    public EhCacheManager getEhCacheManager() {
+        EhCacheManager em = new EhCacheManager();
+        em.setCacheManagerConfigFile("classpath:ehcache-shiro.xml");
+        return em;
     }
 }

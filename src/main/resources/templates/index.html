@@ -1,0 +1,28 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>springboot note</title>
+    <link th:href="@{bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<div th:text="${user.username}"></div>
+<h3 class="panel-title">springboot note</h3>
+<ul>
+    <li><a href="/hello/dang">/hello/dang</a></li>
+    <li><a href="/mongo/savePerson?id=1&name=dang&age=18">/mongo/savePerson?id=1&name=dang&age=18</a></li>
+    <li><a href="/mongo/findById?id=1">/mongo/findById?id=1</a></li>
+    <li><a href="/mybatis/list">/mybatis/list</a></li>
+    <li><a href="/redis/setPerson?id=1&name=dang&age=19">/redis/setPerson?id=1&name=dang&age=19</a></li>
+    <li><a href="/redis/getPerson?id=1">/redis/getPerson?id=1</a></li>
+</ul>
+<h3>springboot+shiro</h3>
+<ul>
+    <li><a href="/auth/login?username=dang&password=dang">/auth/login?username=dang&password=dang</a></li>
+    <li><a href="/auth/hasRole?role=admin">/auth/hasRole?role=admin</a></li>
+    <li><a href="/auth/isPermitted?permitted=add">/auth/isPermitted?permitted=add</a></li>
+</ul>
+
+</body>
+</html>
