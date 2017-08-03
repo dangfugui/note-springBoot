@@ -11,12 +11,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.thymeleaf.util.ListUtils;
 
 import com.dang.note.shiro.domain.User;
-import com.dang.note.utils.ListUtils;
 
 @RestController
 @RequestMapping("/auth")
@@ -36,12 +35,19 @@ public class AuthController {
             return "error";//返回登录页面
         }
     }
+
     @RequestMapping("/hasRole")
-    @ResponseBody
-    public String hasRole(@RequestBody List<String> role, HttpSession session) {
+    public boolean hasRole( String role, HttpSession session) {
         User user = (User)session.getAttribute("user");
         Subject subject = SecurityUtils.getSubject();
-        return subject.hasRoles(role).toString();
+        return subject.hasRole(role);
+
+    }
+    @RequestMapping("/isPermitted")
+    public boolean isPermitted( String permitted, HttpSession session) {
+        User user = (User)session.getAttribute("user");
+        Subject subject = SecurityUtils.getSubject();
+        return subject.isPermitted(permitted);
 
     }
 }
