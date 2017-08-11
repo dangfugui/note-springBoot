@@ -1,9 +1,10 @@
 package com.dang.note.shiro.domain;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Role {
+public class Role implements Serializable {
     private int id;
     private String role;
     private String description;

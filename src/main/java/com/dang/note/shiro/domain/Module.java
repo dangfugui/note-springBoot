@@ -1,8 +1,9 @@
 package com.dang.note.shiro.domain;
 
+import java.io.Serializable;
 import java.util.Set;
 
-public class Module {
+public class Module implements Serializable{
     private int mid;
     private String mname;
     private Set<Role> roles;

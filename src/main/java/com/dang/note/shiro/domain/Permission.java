@@ -1,6 +1,8 @@
 package com.dang.note.shiro.domain;
 
-public class Permission {
+import java.io.Serializable;
+
+public class Permission implements Serializable {
     private int id;
     private String permission;
     private String description;
